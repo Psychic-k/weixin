@@ -18,6 +18,7 @@ def get_color():
     get_colors = lambda n: list(map(lambda i: "#" + "%06x" % random.randint(0, 0xFFFFFF), range(n)))
     color_list = get_colors(100)
     return random.choice(color_list)
+    # return lambda: "#%06x" % random.randint(0, 0xFFFFFF)
 
 
 def get_access_token():
@@ -46,7 +47,6 @@ def get_birthday(birthday, year, today):
         # 今年生日
         birthday = ZhDate(year, r_mouth, r_day).to_datetime().date()
         year_date = birthday
-
 
     else:
         # 获取国历生日的今年对应月和日
@@ -275,31 +275,31 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
             },
             "city": {
                 "value": city_name,
-                "color": get_color()
+                # "color": get_color()
             },
             "weather": {
                 "value": weather,
-                "color": get_color()
+                # "color": get_color()
             },
             "min_temperature": {
                 "value": min_temperature,
-                "color": get_color()
+                # "color": get_color()
             },
             "max_temperature": {
                 "value": max_temperature,
-                "color": get_color()
+                # "color": get_color()
             },
             "love_day": {
                 "value": love_days,
-                "color": get_color()
+                # "color": get_color()
             },
             "note_en": {
                 "value": note_en,
-                "color": get_color()
+                # "color": get_color()
             },
             "note_ch": {
                 "value": note_ch,
-                "color": get_color()
+                # "color": get_color()
             },
 
             "pipi": {
@@ -309,12 +309,12 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
 
             "lucky": {
                 "value": lucky_,
-                "color": get_color()
+                # "color": get_color()
             },
 
             "lizhi": {
                 "value": lizhi,
-                "color": get_color()
+                # "color": get_color()
             },
 
             "pop": {
@@ -334,7 +334,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
 
             "rhetoric": {
                 "value": rhetoric,
-                "color": get_color()
+                "color": "#f4cccc"
             }
         }
     }
@@ -342,7 +342,7 @@ def send_message(to_user, access_token, city_name, weather, max_temperature, min
         # 获取距离下次生日的时间
         birth_day = get_birthday(value, year, today)
         # 将生日数据插入data
-        data["data"][key] = {"value": birth_day, "color": get_color()}
+        data["data"][key] = {"value": birth_day, "color": "#f4cccc"}
     headers = {
         'Content-Type': 'application/json',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
@@ -413,7 +413,7 @@ if __name__ == "__main__":
     lizhi = lizhi()
     # 星座运势
     lucky_ = lucky()
-    #情诗
+    # 情诗
     rhetoric = rhetoric()
     # 公众号推送消息
     for user in users:
